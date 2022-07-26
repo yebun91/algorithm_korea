@@ -98,25 +98,26 @@ function App() {
         </div>
       </Search>
       <Card>
-        {cards.data.map((card) => (
-          <div className="card">
-            <div className="cardImag">
-              <p>{card.length}</p>
-              <img src={card.thumb} alt="card_image" />
-            </div>
-            <div>{card.title}</div>
-            <div>
-              <div>
-                <span>LECTURE</span>
-                <span>{card.created_at_format}</span>
+        {cards &&
+          cards.data?.map((card) => (
+            <div className="card">
+              <div className="cardImag">
+                <p>{card.length}</p>
+                <img src={card.thumb} alt="card_image"></img>
               </div>
+              <div>{card.title}</div>
               <div>
-                <FontAwesomeIcon icon={faEye} />
-                <span>{card.view}</span>
+                <div>
+                  <span>LECTURE</span>
+                  <span>{card.created_at_format}</span>
+                </div>
+                <div>
+                  <FontAwesomeIcon icon={faEye} />
+                  <span>{card.view}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </Card>
       <div>
         <p>1 2</p>
