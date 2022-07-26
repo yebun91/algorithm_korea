@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.7d071a2a.js",
-    "index.html": "/index.html",
-    "main.7d071a2a.js.map": "/static/js/main.7d071a2a.js.map"
+    "main.js": "/algorithm_korea/static/js/main.e91e48c0.js",
+    "index.html": "/algorithm_korea/index.html",
+    "main.e91e48c0.js.map": "/algorithm_korea/static/js/main.e91e48c0.js.map"
   },
   "entrypoints": [
-    "static/js/main.7d071a2a.js"
+    "static/js/main.e91e48c0.js"
   ]
 }
