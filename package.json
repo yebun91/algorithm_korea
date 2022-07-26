@@ -16,7 +16,7 @@
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },	
-  "homepage": "https://github.com/yebun91/algorithm_korea",
+  "homepage": "https://yebun91.github.io/algorithm_korea",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
