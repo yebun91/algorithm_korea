@@ -111,40 +111,55 @@ const Card = styled.div`
     }
   }
 `;
+const PageNumber = styled.div`
+  margin: 50px 0 100px 0;
+  svg,
+  span {
+    cursor: pointer;
+    margin: 0 5px;
+  }
+`;
 
 function App() {
   const [cards, setCards] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    console.log(cards);
-  }, [cards]);
-
-  const api = () => {
+  const api = (pageNum) => {
     axios({
       method: "get",
       url: "http://trusuite.truabutment.com/api/tada/list",
-      data: {
-        page: page,
+      params: {
+        page: pageNum,
         keyword: keyword,
       },
-      maxContentLength: 2000,
     })
-      .then(function (response) {
+      .then((response) => {
         setCards(response.data);
       })
       .catch((error) => console.log(error));
   };
 
   useEffect(() => {
-    api();
+    api(page);
   }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setKeyword("");
+    api(1);
+    setPage(1);
   };
+
+  const onClick = (pageNum) => {
+    api(pageNum);
+    setPage(pageNum);
+  };
+
+  function range(start, end) {
+    return Array(end - start + 1)
+      .fill()
+      .map((_, idx) => start + idx);
+  }
 
   return (
     <All>
@@ -164,8 +179,8 @@ function App() {
       </Search>
       <Card>
         {cards &&
-          cards.data?.map((card) => (
-            <div className="card">
+          cards.data?.map((card, key) => (
+            <div className="card" key={key}>
               <div className="cardImag">
                 <p>{card.length}</p>
                 <img src={card.thumb} alt="card_image"></img>
@@ -184,15 +199,33 @@ function App() {
             </div>
           ))}
       </Card>
-      <div>
-        <p>
-          <FontAwesomeIcon icon={faAnglesLeft} />
-          <FontAwesomeIcon icon={faAngleLeft} />
-          1 2
-          <FontAwesomeIcon icon={faAngleRight} />
-          <FontAwesomeIcon icon={faAnglesRight} />
-        </p>
-      </div>
+      <PageNumber>
+        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => onClick(1)} />
+        <FontAwesomeIcon
+          icon={faAngleLeft}
+          onClick={() => {
+            page === 1 ? onClick(1) : onClick(page - 1);
+          }}
+        />
+        {cards.last_page
+          ? range(1, cards.last_page).map((pagelist) => (
+              <span
+                key={pagelist}
+                onClick={() => onClick(pagelist)}
+                style={pagelist === page ? { fontWeight: "bold" } : null}
+              >
+                {pagelist}
+              </span>
+            ))
+          : null}
+        <FontAwesomeIcon
+          icon={faAngleRight}
+          onClick={() => {
+            page === cards.last_page ? onClick(cards.last_page) : onClick(page + 1);
+          }}
+        />
+        <FontAwesomeIcon icon={faAnglesRight} onClick={() => onClick(cards.last_page)} />
+      </PageNumber>
     </All>
   );
 }
