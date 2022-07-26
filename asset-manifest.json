@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/yebun91/algorithm_korea/static/js/main.e0ac8138.js",
-    "index.html": "/yebun91/algorithm_korea/index.html",
-    "main.e0ac8138.js.map": "/yebun91/algorithm_korea/static/js/main.e0ac8138.js.map"
+    "main.js": "/algorithm_korea/static/js/main.5441a4a5.js",
+    "index.html": "/algorithm_korea/index.html",
+    "main.5441a4a5.js.map": "/algorithm_korea/static/js/main.5441a4a5.js.map"
   },
   "entrypoints": [
-    "static/js/main.e0ac8138.js"
+    "static/js/main.5441a4a5.js"
   ]
 }
